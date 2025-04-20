@@ -1,17 +1,16 @@
-* {
-    margin: 0px;
+*{
+    margin:0px;
     padding: 0px;
-    box-sizing: border-box; /* Mantiene tamaños coherentes con padding/border */
+    box-sizing: border-box;
     font-family: sans-serif;
 }
-
 body {
-    display: flex; /* Centra el contenido horizontal y vertical */
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background: rgb(9,74,136);
-    background-image: url(imgflip/circuitos.jpg); /* Imagen de fondo */
+    background-image: url(imgflip/circuitos.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -19,10 +18,10 @@ body {
 }
 
 .container {
-    display: flex;
+    display: flex; /* Distribuye las tarjetas en fila */
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Permite que las tarjetas bajen de línea */
+    flex-wrap: wrap; /* Permite que las tarjetas bajen si no caben */
     gap: 30px; /* Espacio entre tarjetas */
     padding: 40px;
 }
@@ -31,58 +30,79 @@ body {
     position: relative;
     width: 300px;
     height: 300px;
-    perspective: 1000px; /* Profundidad para efecto 3D */
+    perspective: 1000px; /* Da efecto de profundidad para el giro 3D */
 }
 
 .card .face {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Oculta cara trasera al girar */
+    backface-visibility: hidden; /* Oculta la cara trasera cuando se gira */
     border-radius: 10px;
     overflow: hidden;
-    transition: 0.5s; /* Suaviza el giro */
+    transition: 0.5s; /* Suaviza el efecto de giro */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .card .front {
-    transform: rotateY(0deg); /* Vista frontal inicial */
-    box-shadow: 0 5px 10px #000;
+    transform: rotateY(0deg); /* Vista inicial: cara frontal visible */
+    box-shadow: 0 5px 10px #000; /* Sombra para dar profundidad */
 }
 
 .card .front img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Imagen cubre bien la tarjeta */
+    object-fit: cover; /* La imagen se ajusta sin deformarse */
     flex-grow: 1;
 }
 
 .card .front h3 {
+    margin: 0;
     padding: 15px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro sobre imagen */
+    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro translúcido para el título */
     color: white;
     font-size: 20px;
     text-align: center;
-    position: absolute;
+    position: absolute; /* Fija el título en la parte inferior */
     bottom: 0;
     width: 100%;
 }
 
 .card .back {
-    transform: rotateY(180deg); /* Oculta la parte trasera */
-    background: rgb(3, 35, 54);
+    transform: rotateY(180deg); /* Posición inicial de la parte trasera (oculta) */
+    background: rgb(3, 35, 54); /* Fondo oscuro */
     color: #f3f3f3;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 5px 10px #000;
+    box-shadow: 0 5px 10px #000; /* Sombra para mantener efecto 3D */
+}
+
+.card .back h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card .back p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card .link {
+    border-top: 1px solid #f3f3f3; /* Línea separadora superior */
+    padding-top: 10px;
+}
+
+.card .link a {
+    color: #f3f3f3;
+    text-decoration: none;
 }
 
 .card:hover .front {
-    transform: rotateY(180deg); /* Gira la parte frontal al pasar el ratón */
+    transform: rotateY(180deg); /* Gira la cara frontal al pasar el ratón */
 }
 
 .card:hover .back {
-    transform: rotateY(360deg); /* Muestra la parte trasera */
+    transform: rotateY(360deg); /* Muestra la parte trasera después del giro */
 }
